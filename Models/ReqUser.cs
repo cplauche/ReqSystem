@@ -9,6 +9,7 @@ namespace ReqSystem.Models
     public class ReqUser: IdentityUser
     {
         public DateTime HireDate { get; set; }
+        public int DepartmentId { get; set; }
         public Department Department { get; set; }
     }
 }

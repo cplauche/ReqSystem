@@ -10,6 +10,8 @@ namespace ReqSystem.Models
     {
         public DateTime Date { get; set; }
         public string Text { get; set; }
-        public ReqUser Author { get; set; }
+
+        public int RequisitionId { get; set; }
+        public Requisition Requisition { get; set; }
     }
 }

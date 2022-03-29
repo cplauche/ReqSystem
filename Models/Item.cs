@@ -14,6 +14,7 @@ namespace ReqSystem.Models
         public Double Price { get; set; }
         public int NumberInStock { get; set; }
         public Vendor SuggestedVendor { get; set; }
+        public ICollection<CompetingItem> CompetingItems { get; set; }
 
     }
 }

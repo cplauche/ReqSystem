@@ -11,7 +11,9 @@ namespace ReqSystem.Models
         public string Description { get; set; }
         public Double Amount { get; set; }
         public String Name { get; set; }
+        public int SemesterId { get; set; }
         public Semester Semester { get; set; }
+        public int BudgetId { get; set; }
         public Budget Budget { get; set; }
 
     }

@@ -8,7 +8,8 @@ namespace ReqSystem.Models
 {
     public class Division : EntityBase
     {
+        public String ReqUserId { get; set; }
+        public ReqUser ReqUser { get; set; }
         public ICollection<Department> Departments { get; set; }
-        public ReqUser Chair { get; set; }
     }
 }

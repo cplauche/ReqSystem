@@ -10,13 +10,15 @@ namespace ReqSystem.Models
     {
         //Probably best to seperate this into different classes to represent the
         //stages of a requisition
-        public ReqUser Buyer { get; set; }
-        public Budget Budget { get; set; }
-        public ICollection<Item> Items { get; set; }
+        public String ReqUserId { get; set; }
+        public ReqUser ReqUser { get; set; }
+        public int BudgetId { get; set; }
+        public Budget Budget { get; set; }  
+        public int VendorId { get; set; }
         public Vendor Vendor { get; set; }
-        public ICollection<Comment> Comments { get; set; }
-        //There are a series of comments through the req cycle
         public ReqStatus Status { get; set; }
+        public ICollection<Item> Items { get; set; }
+        public ICollection<Comment> Comments { get; set; }
 
 
 

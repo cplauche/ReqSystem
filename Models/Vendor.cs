@@ -9,6 +9,7 @@ namespace ReqSystem.Models
     public class Vendor : EntityBase
     {
         public string Name { get; set; }
+        public int AddressId { get; set; }
         public Department Address { get; set; }
         public int VendorCode { get; set; }
         //Is VendorCode seperate from its Id?

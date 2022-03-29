@@ -10,7 +10,9 @@ namespace ReqSystem.Models
     {
         public String Name { get; set; }
         public String Description { get; set; }
-        public Item Item { get; set; }
         public Double PricePerUnit { get; set; }
+        public int ItemId { get; set; }
+        public Item Item { get; set; }
+        
     }
 }

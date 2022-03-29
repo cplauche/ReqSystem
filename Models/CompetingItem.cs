@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace ReqSystem.Models
 {
-    public class CompetingItem
+    public class CompetingItem : Item
     {
-        //Not sure if this should be a class
+        public int ItemId { get; set; }
+        public Item Item { get; set; }
     }
 }
