@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ReqSystem.DAL.Repos
 {
-    public class AddressRepo : RepoBase<Department>
+    public class AddressRepo : RepoBase<Address>
     {
         
     }
