@@ -12,7 +12,7 @@ namespace ReqSystem.Models
         public Department Address { get; set; }
         public List<Division> Divisions { get; set; }
         public Semester Semester { get; set; }
-        public IEnumerable<StateContract> StateContracts { get; set; }
+        public ICollection<StateContract> StateContracts { get; set; }
         public Budget Budget { get; set; }
     }
 }

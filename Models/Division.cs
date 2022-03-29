@@ -8,7 +8,7 @@ namespace ReqSystem.Models
 {
     public class Division : EntityBase
     {
-        public IEnumerable<Department> Departments { get; set; }
+        public ICollection<Department> Departments { get; set; }
         public ReqUser Chair { get; set; }
     }
 }
