@@ -1,3 +1,4 @@
+using DAL.IRepos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -7,7 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ReqSystem.DAL.IRepos;
+using ReqSystem.DAL.Repos;
 using ReqSystem.Data;
+using ReqSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +34,21 @@ namespace ReqSystem
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddScoped<IRepo<AcademicProgram>, AcademicProgramRepo>();
+            services.AddScoped<IRepo<Address>, AddressRepo>();
+            services.AddScoped<IRepo<Budget>, BudgetRepo>();
+            services.AddScoped<IRepo<Comment>, CommentRepo>();
+            services.AddScoped<IRepo<Department>, DepartmentRepo>();
+            services.AddScoped<IRepo<Division>, DivisionRepo>();
+            services.AddScoped<IRepo<Fee>, FeeRepo>();
+            services.AddScoped<IRepo<FileAttachment>, FileAttachmentRepo>();
+            services.AddScoped<IRepo<Item>, ItemRepo>();
+            services.AddScoped<IRepo<Requisition>, RequisitionRepo>();
+            services.AddScoped<IReqUserRepo<ReqUser>, ReqUserRepo>();
+            services.AddScoped<IRepo<StateContract>, StateContractRepo>();
+            services.AddScoped<IRepo<Vendor>, VendorRepo>();
+
+            services.AddDefaultIdentity<ReqUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
