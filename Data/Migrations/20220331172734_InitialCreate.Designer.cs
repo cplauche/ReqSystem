@@ -10,14 +10,14 @@ using ReqSystem.Data;
 namespace ReqSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220331160322_InitialCreate")]
+    [Migration("20220331172734_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.21")
+                .HasAnnotation("ProductVersion", "3.1.23")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -872,7 +872,7 @@ namespace ReqSystem.Data.Migrations
                         .HasForeignKey("CollegeId");
 
                     b.HasOne("ReqSystem.Models.Item", "Item")
-                        .WithMany()
+                        .WithMany("StateContracts")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

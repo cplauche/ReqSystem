@@ -10,7 +10,6 @@ namespace ReqSystem.Models
     {
         public String Name { get; set; }
         public String Description { get; set; }
-        //Is a description field important? When would this be used?
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
 

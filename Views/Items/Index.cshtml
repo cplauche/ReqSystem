@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ReqSystem.Models.Requisition>
+﻿@model IEnumerable<ReqSystem.Models.Item>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,16 +13,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ReqUser)
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Budget)
+                @Html.DisplayNameFor(model => model.ItemNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vendor)
+                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberInStock)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TimeStamp)
@@ -34,16 +37,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ReqUser.Id)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Budget.Id)
+                @Html.DisplayFor(modelItem => item.ItemNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Vendor.Id)
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberInStock)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TimeStamp)

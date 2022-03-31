@@ -22,7 +22,8 @@ namespace ReqSystem.Controllers
         // GET: Requisitions
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Requisitions.ToListAsync());
+            var applicationDbContext = _context.Requisitions.Include(r => r.Budget).Include(r => r.ReqUser).Include(r => r.Vendor);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Requisitions/Details/5
@@ -34,6 +35,9 @@ namespace ReqSystem.Controllers
             }
 
             var requisition = await _context.Requisitions
+                .Include(r => r.Budget)
+                .Include(r => r.ReqUser)
+                .Include(r => r.Vendor)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (requisition == null)
             {
@@ -46,6 +50,9 @@ namespace ReqSystem.Controllers
         // GET: Requisitions/Create
         public IActionResult Create()
         {
+            ViewData["BudgetId"] = new SelectList(_context.Budgets, "Id", "Id");
+            ViewData["ReqUserId"] = new SelectList(_context.ReqUsers, "Id", "Id");
+            ViewData["VendorId"] = new SelectList(_context.Vendors, "Id", "Id");
             return View();
         }
 
@@ -54,7 +61,7 @@ namespace ReqSystem.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Status,Id,TimeStamp")] Requisition requisition)
+        public async Task<IActionResult> Create([Bind("ReqUserId,BudgetId,VendorId,Status,Id,TimeStamp")] Requisition requisition)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +69,9 @@ namespace ReqSystem.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["BudgetId"] = new SelectList(_context.Budgets, "Id", "Id", requisition.BudgetId);
+            ViewData["ReqUserId"] = new SelectList(_context.ReqUsers, "Id", "Id", requisition.ReqUserId);
+            ViewData["VendorId"] = new SelectList(_context.Vendors, "Id", "Id", requisition.VendorId);
             return View(requisition);
         }
 
@@ -78,6 +88,9 @@ namespace ReqSystem.Controllers
             {
                 return NotFound();
             }
+            ViewData["BudgetId"] = new SelectList(_context.Budgets, "Id", "Id", requisition.BudgetId);
+            ViewData["ReqUserId"] = new SelectList(_context.ReqUsers, "Id", "Id", requisition.ReqUserId);
+            ViewData["VendorId"] = new SelectList(_context.Vendors, "Id", "Id", requisition.VendorId);
             return View(requisition);
         }
 
@@ -86,7 +99,7 @@ namespace ReqSystem.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Status,Id,TimeStamp")] Requisition requisition)
+        public async Task<IActionResult> Edit(int id, [Bind("ReqUserId,BudgetId,VendorId,Status,Id,TimeStamp")] Requisition requisition)
         {
             if (id != requisition.Id)
             {
@@ -113,6 +126,9 @@ namespace ReqSystem.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["BudgetId"] = new SelectList(_context.Budgets, "Id", "Id", requisition.BudgetId);
+            ViewData["ReqUserId"] = new SelectList(_context.ReqUsers, "Id", "Id", requisition.ReqUserId);
+            ViewData["VendorId"] = new SelectList(_context.Vendors, "Id", "Id", requisition.VendorId);
             return View(requisition);
         }
 
@@ -125,6 +141,9 @@ namespace ReqSystem.Controllers
             }
 
             var requisition = await _context.Requisitions
+                .Include(r => r.Budget)
+                .Include(r => r.ReqUser)
+                .Include(r => r.Vendor)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (requisition == null)
             {
