@@ -853,7 +853,7 @@ namespace ReqSystem.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("ReqSystem.Models.ReqUser", "ReqUser")
-                        .WithMany()
+                        .WithMany("Requisitions")
                         .HasForeignKey("ReqUserId");
 
                     b.HasOne("ReqSystem.Models.Vendor", "Vendor")

@@ -10,7 +10,7 @@ using ReqSystem.Data;
 namespace ReqSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220331172734_InitialCreate")]
+    [Migration("20220331180425_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -855,7 +855,7 @@ namespace ReqSystem.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("ReqSystem.Models.ReqUser", "ReqUser")
-                        .WithMany()
+                        .WithMany("Requisitions")
                         .HasForeignKey("ReqUserId");
 
                     b.HasOne("ReqSystem.Models.Vendor", "Vendor")
