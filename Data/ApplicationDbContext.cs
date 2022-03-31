@@ -29,25 +29,8 @@ namespace ReqSystem.Data
         public DbSet<Semester> Semesters { get; set; }
         public DbSet<StateContract> StateContracts { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
+        public DbSet<ReqSystem.Models.Address> Address { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<AcademicProgram>().ToTable("AcademicProgram");
-            modelBuilder.Entity<Address>().ToTable("Address");
-            modelBuilder.Entity<Budget>().ToTable("Budget");
-            modelBuilder.Entity<College>().ToTable("College");
-            modelBuilder.Entity<Comment>().ToTable("Comment");
-            modelBuilder.Entity<Department>().ToTable("Department");
-            modelBuilder.Entity<Division>().ToTable("Division");
-            modelBuilder.Entity<Fee>().ToTable("Fee");
-            modelBuilder.Entity<FileAttachment>().ToTable("FileAttachment");
-            modelBuilder.Entity<Item>().ToTable("Item");
-            modelBuilder.Entity<Requisition>().ToTable("Requisition");
-            modelBuilder.Entity<Semester>().ToTable("Semester");
-            modelBuilder.Entity<StateContract>().ToTable("StateContract");
-            modelBuilder.Entity<Vendor>().ToTable("Vendor");
-            modelBuilder.Entity<ReqUser>().ToTable("ReqUser");
 
-        }
     }
 }

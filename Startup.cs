@@ -45,7 +45,7 @@ namespace ReqSystem
             services.AddScoped<IRepo<FileAttachment>, FileAttachmentRepo>();
             services.AddScoped<IRepo<Item>, ItemRepo>();
             services.AddScoped<IRepo<Requisition>, RequisitionRepo>();
-            services.AddScoped<IReqUserRepo<ReqUser>, ReqUserRepoBase>();
+            services.AddScoped<IReqUserRepo<ReqUser>, ReqUserRepo>();
             services.AddScoped<IRepo<StateContract>, StateContractRepo>();
             services.AddScoped<IRepo<Vendor>, VendorRepo>();
 
