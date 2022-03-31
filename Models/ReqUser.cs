@@ -12,5 +12,6 @@ namespace ReqSystem.Models
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
         public ICollection<Requisition> Requisitions{ get; set; }
+        public ICollection<Budget> Budgets { get; set; }
     }
 }

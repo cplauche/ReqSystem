@@ -14,6 +14,7 @@ namespace ReqSystem.Models
         public bool IsAnnual { get; set; }
         public int BudgetCodeNumber { get; set; }
         public bool IsActive { get; set; } // Doesn't status cover this??
+        public ICollection<ReqUser> ReqUsers { get; set; }
 
 
     }
