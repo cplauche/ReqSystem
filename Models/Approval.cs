@@ -12,5 +12,6 @@ namespace ReqSystem.Models
         public int RequisitionId { get; set; }
         public ReqUser ReqUser { get; set; }
         public string ReqUserId { get; set; }
+        public ApprovalStatus ApprovalStatus { get; set; }
     }
 }
