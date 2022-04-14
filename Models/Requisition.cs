@@ -8,9 +8,8 @@ namespace ReqSystem.Models
 {
     public class Requisition : EntityBase
     {
-        //Probably best to seperate this into different classes to represent the
-        //stages of a requisition
-        public String ReqUserId { get; set; }
+        //buyer
+        public string ReqUserId { get; set; }
         public ReqUser ReqUser { get; set; }
         public int BudgetId { get; set; }
         public Budget Budget { get; set; }  
@@ -20,8 +19,5 @@ namespace ReqSystem.Models
         public ICollection<Item> Items { get; set; }
         public ICollection<Approval> Approvals { get; set; }
         public ICollection<Comment> Comments { get; set; }
-
-
-
     }
 }

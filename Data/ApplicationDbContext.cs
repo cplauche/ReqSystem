@@ -30,6 +30,7 @@ namespace ReqSystem.Data
         public DbSet<StateContract> StateContracts { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<ReqSystem.Models.Address> Address { get; set; }
+        public DbSet<ReqSystem.Models.CompetingItem> CompetingItem { get; set; }
 
 
     }

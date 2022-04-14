@@ -11,5 +11,6 @@ namespace ReqSystem.Models
         public DateTime HireDate { get; set; }
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
+        public ICollection<Requisition> Requisitions{ get; set; }
     }
 }
