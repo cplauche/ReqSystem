@@ -38,7 +38,10 @@ namespace DAL.Repos
         public bool HasChanges => Db.ChangeTracker.HasChanges();
 
         public int Count => Table.Count();
-
+        public ICollection<T> FindAll()
+        {
+            return Table.ToList();
+        }
         public virtual T Find(int? id) => Table.Find(id);
 
         /// <summary>
@@ -49,6 +52,8 @@ namespace DAL.Repos
         /// <param name="orderBy">The field to sort by</param>
         /// <param name="includeProperties">The columns to include</param>
         /// <returns></returns>
+        /// 
+
         public virtual IEnumerable<T> Search(
             Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,

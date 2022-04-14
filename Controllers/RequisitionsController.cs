@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ReqSystem.DAL.Repos;
 using ReqSystem.Data;
 using ReqSystem.Models;
 
@@ -13,10 +14,30 @@ namespace ReqSystem.Controllers
     public class RequisitionsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly RequisitionRepo _repo;
 
-        public RequisitionsController(ApplicationDbContext context)
+        public RequisitionsController(
+            ApplicationDbContext context,
+            RequisitionRepo repo)
         {
             _context = context;
+            _repo = repo;
+        }
+
+        public IActionResult GetPendingReqs(string ReqUserId)
+        {
+            List<Requisition> Pending = new List<Requisition>();
+            List<Requisition> Reqs = _repo.FindAll().ToList();
+            foreach (Requisition r in Reqs)
+            {
+                //If req is pending and is of the 
+                if (r.Status == 0 && r.ReqUser.Id.Equals(ReqUserId))
+                {
+                    Pending.Add(r);
+                }
+                    
+            }
+            return View();
         }
 
         // GET: Requisitions

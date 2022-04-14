@@ -18,6 +18,7 @@ namespace ReqSystem.Models
         public Vendor Vendor { get; set; }
         public ReqStatus Status { get; set; }
         public ICollection<Item> Items { get; set; }
+        public ICollection<Approval> Approvals { get; set; }
         public ICollection<Comment> Comments { get; set; }
 
 

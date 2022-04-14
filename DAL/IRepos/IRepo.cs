@@ -10,6 +10,7 @@ namespace DAL.IRepos
         int Count { get; }
         bool HasChanges { get; }
         T Find(int? id);
+        ICollection<T> FindAll();
         IEnumerable<T> GetRange(int skip, int take);
         IEnumerable<T> Search(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "");
         int Add(T entity, bool persist = true);
