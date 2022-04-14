@@ -31,13 +31,18 @@ namespace ReqSystem.Controllers
             foreach (Requisition r in Reqs)
             {
                 //If req is pending and is of the 
-                if (r.Status == 0 && r.ReqUser.Id.Equals(ReqUserId))
+                if (r.Status == 0)
                 {
-                    Pending.Add(r);
-                }
-                    
+                    foreach(Approval a in r.Approvals)
+                    {
+                        if(a.ReqUserId.Equals(ReqUserId))
+                        {
+                            Pending.Add(r);
+                        }
+                    } 
+                }   
             }
-            return View();
+            return View(Pending);
         }
 
         // GET: Requisitions
