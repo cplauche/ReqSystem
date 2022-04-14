@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using ReqSystem.DAL.IRepos;
 using ReqSystem.DAL.Repos;
 using ReqSystem.Data;
+using ReqSystem.Mappings;
 using ReqSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -48,9 +49,20 @@ namespace ReqSystem
             services.AddScoped<IReqUserRepo<ReqUser>, ReqUserRepo>();
             services.AddScoped<IRepo<StateContract>, StateContractRepo>();
             services.AddScoped<IRepo<Vendor>, VendorRepo>();
+            //create Irepo and Repo for Approval and add scoped service here. 
+
+            services.AddAutoMapper(typeof(Maps));
 
             services.AddDefaultIdentity<ReqUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(
+                    "IsEmployee",
+                    policyBuilder => policyBuilder.RequireClaim("Job Role"));
+            }
+            );
+            
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

@@ -2,26 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using DAL.IRepos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ReqSystem.DAL.Repos;
 using ReqSystem.Data;
 using ReqSystem.Models;
+using ReqSystem.ViewModels;
 
 namespace ReqSystem.Controllers
 {
     public class RequisitionsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly RequisitionRepo _repo;
+        private readonly IRepo<Requisition> _repo;
+        private readonly IMapper _mapper;
 
         public RequisitionsController(
             ApplicationDbContext context,
-            RequisitionRepo repo)
+            IRepo<Requisition> repo,
+            IMapper mapper)
         {
             _context = context;
             _repo = repo;
+            _mapper = mapper;
         }
 
         public IActionResult GetPendingReqs(string ReqUserId)
@@ -30,7 +36,7 @@ namespace ReqSystem.Controllers
             List<Requisition> Reqs = _repo.FindAll().ToList();
             foreach (Requisition r in Reqs)
             {
-                //If req is pending and is of the 
+                //If req is pending
                 if (r.Status == 0)
                 {
                     foreach(Approval a in r.Approvals)
@@ -46,10 +52,13 @@ namespace ReqSystem.Controllers
         }
 
         // GET: Requisitions
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = _context.Requisitions.Include(r => r.Budget).Include(r => r.ReqUser).Include(r => r.Vendor);
-            return View(await applicationDbContext.ToListAsync());
+            //go through and make use repos
+            var Requisitions = _repo.FindAll().ToList();
+            var model = _mapper.Map<List<Requisition>, List<RequisitionVM>>(Requisitions);
+
+            return View(model);
         }
 
         // GET: Requisitions/Details/5

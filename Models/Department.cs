@@ -12,7 +12,6 @@ namespace ReqSystem.Models
         public Division Division { get; set; }
         public int BudgetId { get; set; }
         public Budget Budget { get; set; }
-        
         public ICollection<ReqUser> ReqUsers { get; set; }
         public ICollection<AcademicProgram> AcademicPrograms { get; set; }
     }
