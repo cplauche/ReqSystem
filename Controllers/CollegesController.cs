@@ -18,6 +18,10 @@ namespace ReqSystem.Controllers
         {
             _context = context;
         }
+        //Administrator and Purchasing Department only
+        public IActionResult ConfigureOrganizationalStructure() {
+            return View();
+        }
 
         // GET: Colleges
         public async Task<IActionResult> Index()

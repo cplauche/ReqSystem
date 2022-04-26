@@ -10,6 +10,8 @@ namespace ReqSystem.Models
         pending,
         approved,
         denied,
-        pendingFinal
+        pendingFinal,
+        canceled
+        
     }
 }

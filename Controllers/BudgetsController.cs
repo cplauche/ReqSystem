@@ -19,6 +19,11 @@ namespace ReqSystem.Controllers
             _context = context;
         }
 
+        //purchasing department only
+        public IActionResult ConfigureBudgetCodes() {
+            return View();
+        }
+
         // GET: Budgets
         public async Task<IActionResult> Index()
         {

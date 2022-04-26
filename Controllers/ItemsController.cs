@@ -19,6 +19,12 @@ namespace ReqSystem.Controllers
             _context = context;
         }
 
+        //purchasing department only
+        public IActionResult ConfigureLineItemCodes()
+        {
+            return View();
+        }
+
         // GET: Items
         public async Task<IActionResult> Index()
         {

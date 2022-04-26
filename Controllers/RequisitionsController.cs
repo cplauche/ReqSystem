@@ -29,8 +29,73 @@ namespace ReqSystem.Controllers
             _repo = repo;
             _mapper = mapper;
         }
-
-        public IActionResult GetPendingReqs(string ReqUserId)
+        //User View their active reqs
+        public IActionResult ViewActiveReqs(string ReqUserId)
+        {
+            List<Requisition> Reqs = _repo.FindAll().ToList();
+            List<Requisition> ActiveReqs = new List<Requisition>();
+            foreach (Requisition r in Reqs)
+            {
+                if(r.ReqUserId.Equals(ReqUserId) && r.Status == 0)
+                {
+                    ActiveReqs.Add(r);
+                }
+            }
+            return View(ActiveReqs);
+        }
+        //User cancels an active req
+        public IActionResult CancelReq(int RequisitionId)
+        {
+            foreach(Requisition r in _repo.FindAll())
+            {
+                if(r.Id == RequisitionId)
+                {
+                    r.Status = ReqStatus.canceled;
+                }
+            }
+            return View();
+        }
+        //User views past, closed reqs
+        public IActionResult ViewClosedReqs(string ReqUserId)
+        {
+            List<Requisition> ClosedReqs = new List<Requisition>();
+            foreach(Requisition r in _repo.FindAll())
+            {
+                if(r.ReqUserId.Equals(ReqUserId))
+                {
+                    if(r.Status == ReqStatus.approved || r.Status == ReqStatus.canceled)
+                    {
+                        ClosedReqs.Add(r);
+                    }
+                }
+            }
+            return View(ClosedReqs);
+        }
+        //User views all their past and present reqs
+        public IActionResult ViewAllReqs(string ReqUserId)
+        {
+            List<Requisition> AllReqs = new List<Requisition>();
+            foreach (Requisition r in _repo.FindAll())
+            {
+                if (r.ReqUserId.Equals(ReqUserId))
+                {
+                    AllReqs.Add(r);
+                }
+            }
+            return View(AllReqs);
+        }
+        //Supervisor approve or deny pending req
+        public IActionResult ReviewReq()
+        {
+            return View();
+        }
+        //Supervisor views all past reqs from their division
+        public IActionResult ViewDivisionReqs()
+        {
+            return View();
+        }
+        //Supervisor views all reqs from their division that are pending
+        public IActionResult ViewPendingDivisionReqs(string ReqUserId)
         {
             List<Requisition> Pending = new List<Requisition>();
             List<Requisition> Reqs = _repo.FindAll().ToList();
